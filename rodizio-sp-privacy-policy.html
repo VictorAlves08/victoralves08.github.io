@@ -1,6 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Política de Privacidade e Proteção de Dados do aplicativo Rodízio SP.">
+<meta name="theme-color" content="#0b1020">
+<title>Política de Privacidade | Rodízio SP</title>
+<style>
+  :root { color-scheme: dark; --bg: #090d1a; --surface: #131b33; --text: #f4f7ff; --muted: #bec8e2; --line: #2c3a62; --link: #7dd3fc; --accent: #a78bfa; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--text); background: radial-gradient(circle at 0 0, rgba(56,189,248,.14), transparent 29rem), radial-gradient(circle at 100% 100%, rgba(139,92,246,.18), transparent 30rem), var(--bg); line-height: 1.65; }
+  .site-header { width: min(100% - 2rem, 58rem); margin: 0 auto; padding: 1.35rem 0 0; }
+  .back-home { display: inline-flex; align-items: center; gap: .45rem; color: var(--text); text-decoration: none; font-weight: 700; }
+  .back-home:hover { color: var(--link); }
+  .back-home:focus-visible, a:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: .25rem; }
+  main { width: min(100% - 2rem, 58rem); margin: 1.1rem auto 3rem; padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid var(--line); border-radius: 1.25rem; background: rgba(19,27,51,.82); box-shadow: 0 18px 45px rgba(0,0,0,.2); }
+  h1, h2, h3, h4 { color: #fff; line-height: 1.22; scroll-margin-top: 1rem; }
+  h1 { margin-top: 0; font-size: clamp(1.85rem, 5vw, 2.5rem); letter-spacing: -.03em; }
+  h2 { margin-top: 2.4rem; padding-top: .3rem; font-size: clamp(1.35rem, 3vw, 1.7rem); border-top: 1px solid var(--line); }
+  h3 { margin-top: 1.8rem; font-size: 1.18rem; }
+  h4 { margin: 1.35rem 0 .4rem; color: #d8ceff; }
+  p, li { color: var(--muted); }
+  a { color: var(--link); text-decoration-thickness: 1.5px; text-underline-offset: .16em; }
+  ul { padding-left: 1.3rem; }
+  li + li { margin-top: .35rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; overflow: hidden; border: 1px solid var(--line); border-radius: .75rem; }
+  th, td { padding: .75rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); color: var(--muted); }
+  th { color: #fff; background: rgba(139,92,246,.14); }
+  tr:last-child td { border-bottom: 0; }
+  @media (max-width: 540px) { main { width: min(100% - 1.2rem, 58rem); padding: 1.25rem; border-radius: 1rem; } th, td { padding: .55rem; font-size: .9rem; } }
+</style>
+</head>
+<body>
+<header class="site-header"><a class="back-home" href="./index.html" aria-label="Voltar à página inicial">← Voltar para os links</a></header>
+<main>
 <h1 id="-rod-zio-sp-app">🚗 Rodízio SP App</h1>
 <p>Política de Privacidade e Proteção de Dados</p>
-<p>Última atualização: 5 de maio de 2026</p>
+<p>Última atualização: 19 de junho de 2026</p>
 <h3 id="-aplicativo-n-o-oficial">⚠️ Aplicativo Não Oficial</h3>
 <p><strong>Este é um aplicativo não oficial e criado de forma independente.</strong> Não é desenvolvido, mantido ou endossado pela Prefeitura de São Paulo, pela CET (Companhia de Engenharia de Tráfego) ou por qualquer órgão governamental municipal.</p>
 <p><strong>As regras do rodízio podem ser alteradas ou suspensas pela Prefeitura de São Paulo em feriados, datas especiais ou por decisão operacional.</strong> Sempre consulte a fonte oficial antes de tomar decisões importantes de deslocamento: <a href="https://www.cetsp.com.br/rodizio.aspx">https://www.cetsp.com.br/rodizio.aspx</a></p>
@@ -8,6 +45,7 @@
 <ul>
 <li><a href="#introducao">Introdução</a></li>
 <li><a href="#dados-coletados">Dados Coletados</a></li>
+<li><a href="#publicidade-admob">Publicidade e Google AdMob</a></li>
 <li><a href="#armazenamento">Armazenamento de Dados</a></li>
 <li><a href="#notificacoes">Notificações e Permissões</a></li>
 <li><a href="#seguranca">Segurança</a></li>
@@ -17,7 +55,7 @@
 <li><a href="#alteracoes">Alterações</a></li>
 <li><a href="#contato">Contato</a></li>
 </ul>
-<h2 id="1-introdu-o">1. Introdução</h2>
+<h2 id="introducao">1. Introdução</h2>
 <p>O <strong>Rodízio SP App</strong> é um aplicativo mobile desenvolvido de forma independente para ajudar motoristas a monitorarem o rodízio de veículos em São Paulo. Esta política de privacidade explica como coletamos, usamos, armazenamos e protegemos seus dados pessoais.</p>
 <p>Este aplicativo foi desenvolvido em conformidade com:</p>
 <ul>
@@ -27,9 +65,9 @@
 <li><strong>Boas práticas de segurança de dados</strong></li>
 </ul>
 <p>Ao usar este aplicativo, você concorda com as práticas descritas nesta política. Se você não concordar com nossas práticas de privacidade, por favor, não use o aplicativo.</p>
-<h2 id="2-dados-coletados">2. Dados Coletados</h2>
+<h2 id="dados-coletados">2. Dados Coletados</h2>
 <h4 id="-abordagem-local-first">✓ Abordagem Local-First</h4>
-<p>O Rodízio SP App foi desenvolvido com uma filosofia <strong>Local-First</strong>, o que significa que todos os seus dados são armazenados <strong>exclusivamente em seu dispositivo</strong>. Não mantemos servidores backend que coletam ou processam seus dados pessoais.</p>
+<p>O Rodízio SP App foi desenvolvido com uma filosofia <strong>Local-First</strong>: os dados que você cadastra no app são armazenados <strong>exclusivamente em seu dispositivo</strong>, e não mantemos servidores próprios para coletá-los ou processá-los. Esta característica não se aplica aos dados técnicos tratados pelo SDK de publicidade descrito na seção seguinte.</p>
 <h3 id="2-1-dados-que-coletamos">2.1 Dados que Coletamos</h3>
 <p>O aplicativo coleta e armazena <strong>apenas localmente</strong> os seguintes dados:</p>
 <ul>
@@ -39,8 +77,8 @@
 <li><strong>Data de criação:</strong> Timestamp do cadastro do veículo</li>
 <li><strong>Configurações de notificação:</strong> Horários de alerta (manhã e tarde) e preferências de ativação</li>
 </ul>
-<h3 id="2-2-dados-que-n-o-coletamos">2.2 Dados que NÃO Coletamos</h3>
-<p><strong>O aplicativo NÃO coleta:</strong></p>
+<h3 id="2-2-dados-que-n-o-coletamos">2.2 Dados que Não Coletamos Diretamente</h3>
+<p><strong>O aplicativo não coleta diretamente:</strong></p>
 <ul>
 <li>Dados de geolocalização</li>
 <li>Histórico de navegação ou movimento</li>
@@ -52,8 +90,11 @@
 <li>Dados de comportamento de uso detalhados</li>
 <li>Analytics ou telemetria (sem Google Analytics, Firebase ou similares)</li>
 </ul>
-<p><strong>💡 Privacidade por Padrão:</strong> Nenhuma funcionalidade do aplicativo depende da coleta de dados pessoais adicionais. Todas as features funcionam localmente no seu dispositivo.</p>
-<h2 id="3-armazenamento-de-dados">3. Armazenamento de Dados</h2>
+<p><strong>💡 Privacidade por Padrão:</strong> As funcionalidades de rodízio e notificações funcionam com dados locais no seu dispositivo. A exibição de anúncios utiliza o Google AdMob conforme descrito abaixo.</p>
+<h3 id="publicidade-admob">2.3 Publicidade e Google AdMob</h3>
+<p>O aplicativo utiliza o <strong>SDK do Google AdMob (Google Mobile Ads)</strong> para exibir publicidade. Ao carregar ou exibir anúncios, o SDK pode coletar e transmitir ao Google identificadores do dispositivo e de publicidade, como o <strong>ID de publicidade</strong> do dispositivo, para fins de fornecimento, medição, segurança e prevenção de fraude em publicidade.</p>
+<p>Esses identificadores são tratados pelo Google de acordo com suas próprias políticas. Para mais informações, consulte a <a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener noreferrer">Política de Privacidade do Google</a> e as configurações de anúncios do seu dispositivo. O Rodízio SP não associa os dados locais de veículos a esses identificadores.</p>
+<h2 id="armazenamento">3. Armazenamento de Dados</h2>
 <h3 id="3-1-armazenamento-local">3.1 Armazenamento Local</h3>
 <p>Todos os seus dados são armazenados <strong>exclusivamente no seu dispositivo</strong> usando o mecanismo nativo de armazenamento:</p>
 <ul>
@@ -61,8 +102,8 @@
 <li><strong>iOS:</strong> Utiliza <code>NSUserDefaults</code> através da biblioteca <code>@react-native-async-storage</code></li>
 </ul>
 <p>Estes dados são armazenados em uma área de dados privada da aplicação que apenas o Rodízio SP App pode acessar.</p>
-<h3 id="3-2-nenhum-envio-para-servidores">3.2 Nenhum Envio para Servidores</h3>
-<p><strong>Seus dados nunca são enviados para nenhum servidor externo</strong>. O aplicativo funciona completamente offline após a instalação. Não há sincronização com clouds, não há backup automático online, não há coleta de dados em servidores.</p>
+<h3 id="3-2-nenhum-envio-para-servidores">3.2 Envio de Dados e Serviços Externos</h3>
+<p>Os dados cadastrais do Rodízio SP (como veículo, cor, dígito da placa e preferências de notificações) não são enviados aos nossos servidores, pois não mantemos backend ou sincronização em nuvem. Porém, quando anúncios são exibidos, o SDK do Google AdMob se comunica com os serviços do Google e pode transmitir os identificadores descritos na seção 2.3.</p>
 <h4 id="-reten-o-de-dados">⏱️ Retenção de Dados</h4>
 <p><strong>Duração:</strong> Os dados são mantidos no seu dispositivo enquanto o aplicativo estiver instalado.</p>
 <p><strong>Exclusão:</strong> Todos os dados são automaticamente deletados quando você:</p>
@@ -79,7 +120,7 @@
 <li><strong>iOS:</strong> Se você ativou o iCloud backup, os dados do app podem ser incluídos</li>
 </ul>
 <p>Você pode desativar esses backups automáticos através das configurações do seu dispositivo. O Rodízio SP App não oferece backup de dados específico.</p>
-<h2 id="4-notifica-es-e-permiss-es">4. Notificações e Permissões</h2>
+<h2 id="notificacoes">4. Notificações e Permissões</h2>
 <h3 id="4-1-notifica-es-locais">4.1 Notificações Locais</h3>
 <p>O aplicativo utiliza <strong>notificações locais</strong> para alertar você sobre períodos de rodízio. Estas notificações:</p>
 <ul>
@@ -120,7 +161,7 @@
 <p>Se você negar a permissão de notificações, o app funcionará normalmente, você apenas não receberá alertas automáticos.</p>
 <h4 id="-sem-rastreamento">ℹ️ Sem Rastreamento</h4>
 <p>As notificações não são rastreadas. Não enviamos informações sobre quando você vê, interage ou ignora uma notificação para nenhum servidor.</p>
-<h2 id="5-seguran-a-de-dados">5. Segurança de Dados</h2>
+<h2 id="seguranca">5. Segurança de Dados</h2>
 <h3 id="5-1-medidas-de-seguran-a">5.1 Medidas de Segurança</h3>
 <p>Como o Rodízio SP App é local-first, a segurança dos seus dados depende principalmente de:</p>
 <ul>
@@ -141,7 +182,7 @@
 <li>Exclusão acidental de dados pelo usuário</li>
 <li>Falhas de segurança do sistema operacional (Android/iOS)</li>
 </ul>
-<h2 id="6-seus-direitos-sob-a-lgpd-lei-geral-de-prote-o-de-dados-">6. Seus Direitos sob a LGPD (Lei Geral de Proteção de Dados)</h2>
+<h2 id="direitos-lgpd">6. Seus Direitos sob a LGPD (Lei Geral de Proteção de Dados)</h2>
 <h4 id="o-que-a-lgpd-">O que é a LGPD?</h4>
 <p>A Lei Geral de Proteção de Dados (LGPD - Lei Nº 13.709/2018) é a legislação brasileira que regulamenta o tratamento de dados pessoais e garante direitos aos cidadãos. O Rodízio SP App respeita plenamente todos os direitos garantidos pela LGPD.</p>
 <h3 id="6-1-seus-direitos">6.1 Seus Direitos</h3>
@@ -160,7 +201,7 @@
 <h4 id="-direito-portabilidade-de-dados">✓ Direito à Portabilidade de Dados</h4>
 <p>Seus dados são seus. Como estão armazenados localmente no seu dispositivo, você tem total controle sobre eles. Você pode extraí-los e transferi-los conforme necessário (através do backup do dispositivo).</p>
 <h4 id="-direito-de-oposi-o">✓ Direito de Oposição</h4>
-<p>Você pode se opor a qualquer prática de processamento de dados. Como não processamos dados em servidores e não fazemos coleta não consentida, este direito é respeitado por padrão.</p>
+<p>Você pode se opor às práticas de tratamento de dados aplicáveis. Os dados locais podem ser removidos diretamente do dispositivo; para informações sobre os dados tratados pelo Google AdMob, consulte também as opções de privacidade e anúncios disponibilizadas pelo Google.</p>
 <h4 id="-direito-n-o-discrimina-o">✓ Direito à Não Discriminação</h4>
 <p>Você não sofrerá discriminação por exercer qualquer dos seus direitos LGPD. O funcionamento completo do app não depende da coleta de dados pessoais.</p>
 <h3 id="6-2-como-exercer-seus-direitos">6.2 Como Exercer Seus Direitos</h3>
@@ -171,18 +212,19 @@
 </ul>
 <h3 id="6-3-prazos-de-resposta">6.3 Prazos de Resposta</h3>
 <p>Conforme a LGPD, o prazo máximo para responder a solicitações de exercício de direitos é de <strong>15 dias</strong>, prorrogáveis por mais 15 dias em situações complexas.</p>
-<h2 id="7-compartilhamento-de-dados">7. Compartilhamento de Dados</h2>
-<h3 id="7-1-compartilhamento-interno">7.1 Compartilhamento Interno</h3>
-<p><strong>Seus dados não são compartilhados com terceiros.</strong> Como o aplicativo é local-first, não há compartilhamento de dados com:</p>
+<h2 id="compartilhamento">7. Compartilhamento de Dados</h2>
+<h3 id="7-1-dados-locais">7.1 Dados Locais</h3>
+<p>Os dados que você cadastra para usar o Rodízio SP permanecem no seu dispositivo e não são compartilhados por nós com terceiros. Não há compartilhamento desses dados com:</p>
 <ul>
 <li>Servidores backend</li>
 <li>Serviços de análise (Google Analytics, Firebase, etc.)</li>
-<li>Redes de publicidade</li>
 <li>Plataformas de redes sociais</li>
 <li>Órgãos governamentais (exceto conforme exigido por lei)</li>
 <li>Fornecedores de serviços em nuvem</li>
 </ul>
-<h3 id="7-2-compartilhamento-obrigado-por-lei">7.2 Compartilhamento Obrigado por Lei</h3>
+<h3 id="7-2-google-admob">7.2 Google AdMob</h3>
+<p>Para viabilizar a publicidade no aplicativo, o SDK do Google AdMob pode compartilhar com o Google os identificadores de publicidade e dispositivo mencionados na seção 2.3. Esse tratamento é realizado pelo Google conforme a sua política de privacidade e seus termos aplicáveis.</p>
+<h3 id="7-3-compartilhamento-obrigado-por-lei">7.3 Compartilhamento Obrigado por Lei</h3>
 <p>Nós podemos ser obrigados a compartilhar seus dados se:</p>
 <ul>
 <li>Exigido por ordem judicial</li>
@@ -190,9 +232,9 @@
 <li>Necessário para cumprir a lei ou regulação aplicável</li>
 </ul>
 <p>Neste caso, qualquer compartilhamento será feito conforme exigido pela lei e nossos esforços serão feitos para notificá-lo quando legalmente permitido.</p>
-<h3 id="7-3-compartilhamento-com-depend-ncias-de-c-digo">7.3 Compartilhamento com Dependências de Código</h3>
-<p>O aplicativo utiliza bibliotecas externas de terceiros. Nenhuma dessas dependências acessa ou transmite seus dados pessoais. Todas as bibliotecas foram selecionadas com cuidado para garantir que não coletam ou rastreiam dados do usuário.</p>
-<h2 id="8-prote-o-de-menores-de-idade">8. Proteção de Menores de Idade</h2>
+<h3 id="7-4-dependencias-de-codigo">7.4 Dependências de Código</h3>
+<p>O aplicativo utiliza bibliotecas externas de terceiros. Exceto pelo SDK do Google AdMob, descrito nesta política, essas dependências não acessam ou transmitem os dados locais cadastrados no app.</p>
+<h2 id="menores">8. Proteção de Menores de Idade</h2>
 <h3 id="8-1-consentimento-dos-respons-veis">8.1 Consentimento dos Responsáveis</h3>
 <p>O Rodízio SP App não é intencionalmente direcionado a menores de idade (menores de 18 anos). Se você é menor de idade:</p>
 <ul>
@@ -203,7 +245,7 @@
 <p>Como não coletamos dados pessoais sensíveis além do que é estritamente necessário para a funcionalidade do app, a privacidade de menores é protegida por padrão.</p>
 <h3 id="8-3-descoberta-de-uso-por-menores">8.3 Descoberta de Uso por Menores</h3>
 <p>Se descobrirmos que um menor de idade está usando o app sem consentimento dos responsáveis, tomaremos as medidas apropriadas conforme a LGPD e legislação aplicável.</p>
-<h2 id="9-altera-es-na-pol-tica-de-privacidade">9. Alterações na Política de Privacidade</h2>
+<h2 id="alteracoes">9. Alterações na Política de Privacidade</h2>
 <p>Nós podemos atualizar esta política de privacidade de tempos em tempos para refletir mudanças em nossas práticas, tecnologia, legislação e outros fatores.</p>
 <h3 id="9-1-como-ser-o-notificadas-as-altera-es">9.1 Como Serão Notificadas as Alterações</h3>
 <p><strong>Notificação de alterações materiais:</strong></p>
@@ -228,13 +270,18 @@
 </thead>
 <tbody>
 <tr>
+<td>19 de junho de 2026</td>
+<td>1.1.0</td>
+<td>Inclusão das informações sobre publicidade, SDK do Google AdMob e identificadores de publicidade</td>
+</tr>
+<tr>
 <td>5 de maio de 2026</td>
 <td>1.0.0</td>
 <td>Publicação inicial da Política de Privacidade</td>
 </tr>
 </tbody>
 </table>
-<h2 id="10-contato-e-d-vidas">10. Contato e Dúvidas</h2>
+<h2 id="contato">10. Contato e Dúvidas</h2>
 <p>Se você tiver dúvidas, preocupações ou desejar exercer qualquer de seus direitos conforme esta política de privacidade ou a LGPD, por favor entre em contato conosco:</p>
 <h3 id="-informa-es-de-contato">📞 Informações de Contato</h3>
 <p><strong>📧 Email:</strong> <a href="mailto:victoroliveira.sde@gmail.com">victoroliveira.sde@gmail.com</a></p>
@@ -257,33 +304,9 @@
 <p>Nós não somos responsáveis por multas, infrações de trânsito ou outros danos resultantes do uso ou mal uso deste aplicativo.</p>
 <p>© 2026 Rodízio SP App</p>
 <p>📱 <strong>Aplicativo versão:</strong> 1.0.0
-📄 <strong>Política versão:</strong> 1.0
-📅 <strong>Última atualização:</strong> 5 de maio de 2026</p>
-<p><strong>Nota:</strong> Esta política é disponibilizada em Português Brasileiro. Em caso de conflito entre versões em diferentes idiomas, a versão em Português Brasileiro prevalece.
-down</p>
-<p>This is some basic, sample markdown.</p>
-<h2 id="second-heading">Second Heading</h2>
-<ul>
-<li>Unordered lists, and:<ol>
-<li>One</li>
-<li>Two</li>
-<li>Three</li>
-</ol>
-</li>
-<li>More</li>
-</ul>
-<blockquote>
-<p>Blockquote</p>
-</blockquote>
-<p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
-<p>And code highlighting:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">'bar'</span>;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span><span class="hljs-params">(s)</span> </span>{
-   <span class="hljs-keyword">return</span> foo + <span class="hljs-string">':'</span> + s;
-}
-</code></pre>
-<p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
-<p>Or an image of bears</p>
-<p><img src="http://placebear.com/200/200" alt="bears"></p>
-<p>The end ...</p>
+📄 <strong>Política versão:</strong> 1.1
+📅 <strong>Última atualização:</strong> 19 de junho de 2026</p>
+<p><strong>Nota:</strong> Esta política é disponibilizada em Português Brasileiro. Em caso de conflito entre versões em diferentes idiomas, a versão em Português Brasileiro prevalece.</p>
+</main>
+</body>
+</html>
