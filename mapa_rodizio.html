@@ -107,16 +107,6 @@
       font-weight: 400;
     }
 
-    .status-coords {
-      font-family: monospace;
-      font-size: 10px;
-      opacity: 0.8;
-      margin-top: 1px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 1px 6px;
-      border-radius: 6px;
-    }
-
     /* Barra de Botões de Ação Abaixo do Aviso */
     .action-bar {
       display: flex;
@@ -211,7 +201,7 @@
         <span>📡</span> Aguardando localização do GPS...
       </div>
       <div class="status-subtitle">
-        Toque no mapa para testar um local ou aguarde o GPS
+        O status será calculado pela sua localização atual
       </div>
     </div>
 
@@ -1391,7 +1381,6 @@
           zIndexOffset: 1000
         }).addTo(map);
 
-        userCircleMarker.bindPopup('<b>📍 Sua localização atual</b>');
       } else {
         userCircleMarker.setLatLng([lat, lng]);
       }
@@ -1429,14 +1418,12 @@
           statusEl.innerHTML = `
             <div class="status-title">⚠️ Você está DENTRO do Rodízio</div>
             <div class="status-subtitle">Picos: 07h-10h e 17h-20h (Seg a Sex)</div>
-            <div class="status-coords">Lat/Lng: ${coordsText}</div>
           `;
         } else {
           statusEl.className = 'status-card outside';
           statusEl.innerHTML = `
             <div class="status-title">✅ Você está FORA do Rodízio</div>
             <div class="status-subtitle">Circulação livre de restrição nesta via</div>
-            <div class="status-coords">Lat/Lng: ${coordsText}</div>
           `;
         }
       }
@@ -1483,34 +1470,6 @@
           function () { },
           { enableHighAccuracy: true, timeout: 5000 }
         );
-      }
-    });
-
-    // Toque livre no mapa para testar pontos
-    map.on('click', function (e) {
-      const clickedLat = e.latlng.lat;
-      const clickedLng = e.latlng.lng;
-      const inside = isInsideRodizioArea([clickedLat, clickedLng], perimeterCoords);
-      const statusEl = document.getElementById('status');
-      const coordsText = `${clickedLat.toFixed(5)}, ${clickedLng.toFixed(5)}`;
-
-      if (statusEl) {
-        statusEl.classList.remove('searching');
-        if (inside) {
-          statusEl.className = 'status-card inside';
-          statusEl.innerHTML = `
-            <div class="status-title">⚠️ Ponto Selecionado: DENTRO do Rodízio</div>
-            <div class="status-subtitle">Toque no GPS para voltar à sua posição</div>
-            <div class="status-coords">Lat/Lng: ${coordsText}</div>
-          `;
-        } else {
-          statusEl.className = 'status-card outside';
-          statusEl.innerHTML = `
-            <div class="status-title">✅ Ponto Selecionado: FORA do Rodízio</div>
-            <div class="status-subtitle">Toque no GPS para voltar à sua posição</div>
-            <div class="status-coords">Lat/Lng: ${coordsText}</div>
-          `;
-        }
       }
     });
 
