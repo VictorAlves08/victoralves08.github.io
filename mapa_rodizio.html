@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mapa Rodízio SP</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0f172a; }
+    #map { width: 100%; height: 100%; }
+    .status-card {
+      position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 1000;
+      background: rgba(15, 23, 42, 0.9); color: white; padding: 12px 16px;
+      border-radius: 12px; font-family: sans-serif; font-size: 14px; text-align: center;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="status" class="status-card">Aguardando localização do GPS...</div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // 1. Inicializar Mapa em SP (Centralizado na Praça da Sé)
+    const map = L.map('map', { zoomControl: false }).setView([-23.5505, -46.6333], 12);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    // 2. CORREÇÃO: Coordenadas exatas do Centro Expandido com Longitudes ajustadas (-46)
+    const perimeterCoords = [
+      [-23.5186, -46.5186], // Início na Marginal Tietê x Salim Farah Maluf
+      [-23.5225, -46.5350], // Marginal Tietê (Próximo à Ponte Tatuapé)
+      [-23.5173, -46.5684], // Marginal Tietê (Próximo à Ponte da Vila Maria)
+      [-23.5113, -46.6105], // Marginal Tietê (Próximo à Ponte das Bandeiras)
+      [-23.5244, -46.6515], // Marginal Tietê (Próximo à Ponte da Casa Verde)
+      [-23.5280, -46.6740], // Entroncamento Marginal Tietê x Marginal Pinheiros (Cebolão)
+      [-23.5450, -46.6795], // Marginal Pinheiros (Próximo à Ponte Cidade Universitária)
+      [-23.5710, -46.6935], // Marginal Pinheiros (Próximo à Ponte Eusébio Matoso)
+      [-23.6015, -46.6910], // Marginal Pinheiros (Próximo à Ponte Cidade Jardim)
+      [-23.6248, -46.6995], // Entroncamento Marginal Pinheiros x Av. dos Bandeirantes
+      [-23.6130, -46.6620], // Av. dos Bandeirantes (Cruzamento com Av. Santo Amaro)
+      [-23.6100, -46.6450], // Av. dos Bandeirantes (Próximo ao Viaduto Jabaquara / Av. Washington Luís)
+      [-23.6165, -46.6210], // Complexo Viário Maria Maluf (Túnel)
+      [-23.6120, -46.6010], // Av. Presidente Tancredo Neves
+      [-23.5935, -46.5930], // Av. das Juntas Provisórias (Ipiranga)
+      [-23.5810, -46.5905], // Viaduto Grande São Paulo
+      [-23.5750, -46.5780], // Av. Professor Luís Inácio de Anhaia Melo (Início)
+      [-23.5630, -46.5610], // Cruzamento Anhaia Melo x Av. Salim Farah Maluf
+      [-23.5410, -46.5580], // Av. Salim Farah Maluf (Altura do Metrô Tatuapé)
+      [-23.5186, -46.5186]  // Fecha o polígono no ponto inicial
+    ];
+
+    const polygon = L.polygon(perimeterCoords, {
+      color: '#ef4444',      // Vermelho Tailwind
+      fillColor: '#ef4444',
+      fillOpacity: 0.2,
+      weight: 3
+    }).addTo(map);
+
+    let userMarker = null;
+
+    // AJUSTE: Algoritmo Ray-Casting estruturado explicitamente para [Lat, Lng]
+    function isInsidePolygon(point, vs) {
+      const lat = point[0], lng = point[1];
+      let inside = false;
+      
+      for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        const viLat = vs[i][0], viLng = vs[i][1];
+        const vjLat = vs[j][0], vjLng = vs[j][1];
+        
+        // Verifica a intersecção usando as latitudes como eixo Y e longitudes como eixo X
+        const intersect = ((viLat > lat) !== (vjLat > lat))
+            && (lng < (vjLng - viLng) * (lat - viLat) / (vjLat - viLat) + viLng);
+            
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
+    // Função exposta para o WebView chamar
+    function updateLocation(lat, lng) {
+      if (!userMarker) {
+        userMarker = L.circleMarker([lat, lng], { 
+          radius: 8, 
+          color: '#ffffff', 
+          weight: 2,
+          fillColor: '#3b82f6', 
+          fillOpacity: 1 
+        }).addTo(map);
+      } else {
+        userMarker.setLatLng([lat, lng]);
+      }
+      
+      map.setView([lat, lng], 14);
+
+      const inside = isInsidePolygon([lat, lng], perimeterCoords);
+      const statusEl = document.getElementById('status');
+      
+      if (inside) {
+        statusEl.innerHTML = '⚠️ <b>Você está DENTRO</b> do Centro Expandido (Rodízio)';
+        statusEl.style.borderColor = '#ef4444';
+        statusEl.style.background = 'rgba(239, 68, 68, 0.95)'; // Fundo levemente avermelhado para alerta
+      } else {
+        statusEl.innerHTML = '✅ <b>Você está FORA</b> da área de restrição';
+        statusEl.style.borderColor = '#10b981';
+        statusEl.style.background = 'rgba(15, 23, 42, 0.9)';   // Retorna ao fundo original escuro
+      }
+    }
+
+    // Comunicação recebida do React Native / Flutter WebView
+    window.addEventListener('message', (event) => {
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        if (data.type === 'SET_LOCATION') {
+          updateLocation(Number(data.lat), Number(data.lng));
+        }
+      } catch(e) {
+        console.error("Erro ao processar mensagem do WebView:", e);
+      }
+    });
+  </script>
+</body>
+</html>
