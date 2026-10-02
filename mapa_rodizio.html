@@ -1408,25 +1408,6 @@
 
       // Validação de entrada na restrição
       const inside = isInsideRodizioArea([lat, lng], perimeterCoords);
-      const statusEl = document.getElementById('status');
-      const coordsText = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-
-      if (statusEl) {
-        statusEl.classList.remove('searching');
-        if (inside) {
-          statusEl.className = 'status-card inside';
-          statusEl.innerHTML = `
-            <div class="status-title">⚠️ Você está DENTRO do Rodízio</div>
-            <div class="status-subtitle">Picos: 07h-10h e 17h-20h (Seg a Sex)</div>
-          `;
-        } else {
-          statusEl.className = 'status-card outside';
-          statusEl.innerHTML = `
-            <div class="status-title">✅ Você está FORA do Rodízio</div>
-            <div class="status-subtitle">Circulação livre de restrição nesta via</div>
-          `;
-        }
-      }
     }
 
     // Marcador de busca de endereço
