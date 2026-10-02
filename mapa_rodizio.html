@@ -196,15 +196,6 @@
   <div id="map"></div>
 
   <div class="bottom-container">
-    <div id="status" class="status-card searching">
-      <div class="status-title pulse-animation">
-        <span>📡</span> Aguardando localização do GPS...
-      </div>
-      <div class="status-subtitle">
-        O status será calculado pela sua localização atual
-      </div>
-    </div>
-
     <div class="action-bar">
       <button id="gpsBtn" class="action-btn gps" title="Centralizar na minha localização"
         aria-label="Minha Localização">
@@ -1413,14 +1404,25 @@
     // Marcador de busca de endereço
     let userMarker = null;
 
+    // Remove marcador de busca
+    function clearUserMarker() {
+      if (userMarker) {
+        userMarker.off('popupclose');
+        map.removeLayer(userMarker);
+        userMarker = null;
+      }
+      if (window._userSearchMarker && window._userSearchMarker !== userMarker) {
+        window._userSearchMarker.off('popupclose');
+        map.removeLayer(window._userSearchMarker);
+        window._userSearchMarker = null;
+      }
+    }
+
     // Plota marcador no endereço pesquisado e verifica rodízio
     function plotUserAddress(lat, lng, title) {
       if (typeof lat !== 'number' || typeof lng !== 'number' || isNaN(lat) || isNaN(lng)) return;
 
-      if (userMarker) {
-        map.removeLayer(userMarker);
-        userMarker = null;
-      }
+      clearUserMarker();
 
       const inside = isInsideRodizioArea([lat, lng], perimeterCoords);
       const badgeColor = inside ? '#e11d48' : '#10b981';
@@ -1441,8 +1443,21 @@
             <div style="font-weight: 800; font-size: 12px; margin-bottom: 4px; color: ${badgeColor};">${badgeText}</div>
             <div style="font-size: 12px; color: #1e293b; font-weight: 500;">${title}</div>
           </div>
-        `)
-        .openPopup();
+        `);
+
+      window._userSearchMarker = userMarker;
+
+      userMarker.on('popupclose', function () {
+        clearUserMarker();
+        if (lastUserLocation) {
+          map.flyTo(lastUserLocation, 15, { animate: true, duration: 1.2 });
+        }
+        if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+          window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'POPUP_CLOSED' }));
+        }
+      });
+
+      userMarker.openPopup();
 
       map.flyTo([lat, lng], 16, { animate: true, duration: 1.2 });
 
@@ -1454,14 +1469,6 @@
           lat: lat,
           lng: lng
         }));
-      }
-    }
-
-    // Remove marcador de busca
-    function clearUserMarker() {
-      if (userMarker) {
-        map.removeLayer(userMarker);
-        userMarker = null;
       }
     }
 
@@ -1541,6 +1548,9 @@
           }
         } else if (data.type === 'CLEAR_USER_MARKER') {
           clearUserMarker();
+          if (lastUserLocation) {
+            map.flyTo(lastUserLocation, 15, { animate: true, duration: 1.2 });
+          }
         }
       } catch (err) { }
     }
