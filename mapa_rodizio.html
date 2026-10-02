@@ -1429,10 +1429,71 @@
       }
     }
 
-    // Exposição global de funções
+    // Marcador de busca de endereço
+    let userMarker = null;
+
+    // Plota marcador no endereço pesquisado e verifica rodízio
+    function plotUserAddress(lat, lng, title) {
+      if (typeof lat !== 'number' || typeof lng !== 'number' || isNaN(lat) || isNaN(lng)) return;
+
+      if (userMarker) {
+        map.removeLayer(userMarker);
+        userMarker = null;
+      }
+
+      const inside = isInsideRodizioArea([lat, lng], perimeterCoords);
+      const badgeColor = inside ? '#e11d48' : '#10b981';
+      const badgeText = inside ? '⛔ DENTRO DO RODÍZIO' : '✅ FORA DO RODÍZIO';
+
+      const customIcon = L.divIcon({
+        className: 'search-destination-pin',
+        html: `<div style="background-color: ${badgeColor}; width: 32px; height: 32px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; border: 2px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.45);"><div style="width: 10px; height: 10px; background: #ffffff; border-radius: 50%;"></div></div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
+
+      userMarker = L.marker([lat, lng], { icon: customIcon })
+        .addTo(map)
+        .bindPopup(`
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; line-height: 1.4; min-width: 170px; max-width: 240px; padding: 2px;">
+            <div style="font-weight: 800; font-size: 12px; margin-bottom: 4px; color: ${badgeColor};">${badgeText}</div>
+            <div style="font-size: 12px; color: #1e293b; font-weight: 500;">${title}</div>
+          </div>
+        `)
+        .openPopup();
+
+      map.flyTo([lat, lng], 16, { animate: true, duration: 1.2 });
+
+      if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+          type: 'SEARCH_RESULT_STATUS',
+          isInside: inside,
+          address: title,
+          lat: lat,
+          lng: lng
+        }));
+      }
+    }
+
+    // Remove marcador de busca
+    function clearUserMarker() {
+      if (userMarker) {
+        map.removeLayer(userMarker);
+        userMarker = null;
+      }
+    }
+
+    // Exposição global de funções e objetos essenciais
+    window.map = map;
+    window.perimeterCoords = perimeterCoords;
+    window.polygon = polygon;
+    window.isInsideRodizioArea = isInsideRodizioArea;
     window.updateLocation = updateUserPin;
     window.updateUserPin = updateUserPin;
     window.showRodizioArea = showRodizioArea;
+    window.plotUserAddress = plotUserAddress;
+    window.clearUserMarker = clearUserMarker;
 
     // Checagem de parâmetros de URL
     try {
@@ -1490,6 +1551,15 @@
           }
         } else if (data.type === 'SHOW_RODIZIO_AREA') {
           showRodizioArea();
+        } else if (data.type === 'PLOT_USER_ADDRESS') {
+          const pLat = Number(data.lat);
+          const pLng = Number(data.lng !== undefined ? data.lng : data.lon);
+          const pTitle = data.title || data.address || '';
+          if (!isNaN(pLat) && !isNaN(pLng)) {
+            plotUserAddress(pLat, pLng, pTitle);
+          }
+        } else if (data.type === 'CLEAR_USER_MARKER') {
+          clearUserMarker();
         }
       } catch (err) { }
     }
