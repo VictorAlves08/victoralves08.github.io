@@ -172,7 +172,7 @@
   <main>
     <h1 id="-rod-zio-sp-app">🚗 Rodízio SP App</h1>
     <p>Política de Privacidade e Proteção de Dados</p>
-    <p>Última atualização: 2 de setembro de 2026</p>
+    <p>Última atualização: 2 de outubro de 2026</p>
     <h3 id="-aplicativo-n-o-oficial">⚠️ Aplicativo Não Oficial</h3>
     <p><strong>Este é um aplicativo não oficial e criado de forma independente.</strong> Não é desenvolvido, mantido ou
       endossado pela Prefeitura de São Paulo, pela CET (Companhia de Engenharia de Tráfego) ou por qualquer órgão
@@ -241,20 +241,27 @@
     </ul>
     <p><strong>💡 Privacidade por Padrão:</strong> As funcionalidades de rodízio e notificações funcionam com dados
       locais no seu dispositivo. A exibição de anúncios utiliza o Google AdMob conforme descrito abaixo.</p>
-    <h3 id="localizacao">2.3 Localização e Mapa</h3>
-    <p>Se você conceder a permissão de localização, o aplicativo poderá capturar sua localização aproximada ou precisa
-      enquanto a tela do mapa estiver em uso. A localização é utilizada para:</p>
+    <h3 id="localizacao">2.3 Localização, Mapa e Busca de Endereços</h3>
+    <h4 id="-localizacao-gps">📍 Localização em Tempo Real (GPS)</h4>
+    <p>Se você conceder a permissão de localização (aproximada ou precisa), o aplicativo poderá capturar sua posição geográfica
+      <strong>exclusivamente enquanto a tela do mapa estiver aberta e em primeiro plano</strong>. A localização é utilizada para:</p>
     <ul>
-      <li>Mostrar sua posição no mapa;</li>
-      <li>Indicar se você está dentro ou fora da área de rodízio exibida no mapa; e</li>
-      <li>Centralizar o mapa na sua posição quando solicitado.</li>
+      <li>Exibir sua posição em tempo real no mapa interativo;</li>
+      <li>Calcular dinamicamente se você está dentro ou fora da área de rodízio (Centro Expandido); e</li>
+      <li>Centralizar o mapa na sua posição geográfica atual quando solicitado.</li>
     </ul>
-    <p>O aplicativo não acompanha sua localização em segundo plano, não cria histórico de deslocamento e não armazena
-      suas coordenadas no armazenamento local do app. A permissão é opcional: se você não concedê-la, ainda poderá
-      visualizar e explorar a área de rodízio no mapa.</p>
-    <p>Para exibir o mapa, a funcionalidade utiliza um mapa hospedado externamente e mapas-base do OpenStreetMap. Ao
-      usar essa tela, informações técnicas da conexão e, quando aplicável, coordenadas necessárias à exibição do mapa
-      podem ser processadas pelos respectivos provedores, conforme as políticas deles.</p>
+    <p><strong>Acompanhamento restrito e sem rastreamento em segundo plano:</strong> O aplicativo interrompe imediatamente qualquer leitura de GPS no momento em que você sai da tela do mapa ou minimiza o aplicativo. Não coletamos localização em segundo plano (background), não traçamos rotas, não geramos histórico de deslocamento e não armazenamos suas coordenadas geográficas no armazenamento local ou em qualquer servidor.</p>
+    <p>A concessão da permissão de localização é opcional: se preferir não concedê-la, o aplicativo funcionará normalmente e você continuará podendo visualizar o mapa, consultar o perímetro de rodízio e pesquisar locais manualmente.</p>
+
+    <h4 id="-busca-enderecos">🔍 Busca e Autocomplete de Endereços (LocationIQ)</h4>
+    <p>A tela do mapa disponibiliza um campo de busca que permite pesquisar ruas, avenidas, bairros, estações ou pontos de interesse em São Paulo, possibilitando conferir antecipadamente se determinado endereço está dentro ou fora da área de rodízio.</p>
+    <ul>
+      <li><strong>Funcionamento da busca:</strong> Conforme você digita no campo de pesquisa, o termo pesquisado é transmitido por conexão criptografada (HTTPS) para a API de geocodificação do serviço terceiro <strong>LocationIQ</strong>, delimitada para a região metropolitana de São Paulo, a fim de retornar sugestões de preenchimento automático (autocomplete).</li>
+      <li><strong>Privacidade na pesquisa:</strong> As consultas à API LocationIQ são pontuais, efêmeras e estritamente necessárias para a exibição das sugestões no momento da digitação. Não associamos os termos pesquisados aos seus veículos cadastrados, não mantemos histórico de pesquisas no dispositivo e não transmitimos dados pessoais identificadores à LocationIQ.</li>
+    </ul>
+
+    <h4 id="-provedores-mapa">🗺️ Renderização Cartográfica e Provedores</h4>
+    <p>Para exibir o mapa interativo, a aplicação utiliza a biblioteca Leaflet e mapas-base (tiles) fornecidos pelo <strong>OpenStreetMap</strong>, além de página hospedada via GitHub Pages. Ao acessar o mapa, informações técnicas padrão da comunicação de rede (como endereço IP e dados de cabeçalho HTTP) podem ser processadas pelos servidores desses provedores para a entrega das imagens cartográficas, em conformidade com suas respectivas políticas de privacidade.</p>
     <h3 id="calendario">2.4 Integração com o Calendário</h3>
     <p>Se você autorizar o acesso ao calendário, o aplicativo poderá listar calendários que permitem alterações e criar
       eventos recorrentes com os períodos de rodízio do veículo selecionado. Os eventos podem incluir o nome do veículo,
@@ -287,10 +294,13 @@
     <p>Estes dados são armazenados em uma área de dados privada da aplicação que apenas o Rodízio SP App pode acessar.
     </p>
     <h3 id="3-2-nenhum-envio-para-servidores">3.2 Envio de Dados e Serviços Externos</h3>
-    <p>Os dados cadastrais do Rodízio SP (como veículo, cor, dígito da placa e preferências de notificações) não são
-      enviados aos nossos servidores, pois não mantemos backend ou sincronização em nuvem. Porém, quando anúncios são
-      exibidos, o SDK do Google AdMob se comunica com os serviços do Google e pode transmitir os identificadores
-      descritos na seção 2.3.</p>
+    <p>Os dados cadastrais do Rodízio SP (como veículo, cor, dígito final da placa e preferências de alertas) não são
+      enviados a servidores próprios, pois não possuímos infraestrutura de backend ou sincronização em nuvem. No entanto, para disponibilizar determinados recursos, o aplicativo realiza comunicações diretas via conexões seguras (HTTPS) com serviços terceiros autorizados:</p>
+    <ul>
+      <li><strong>Google AdMob:</strong> Ao carregar anúncios, o SDK transmite identificadores técnicos e de publicidade do dispositivo (conforme seção 2.5);</li>
+      <li><strong>LocationIQ:</strong> Ao utilizar a barra de pesquisa do mapa, transmite o texto pesquisado para fornecimento de sugestões de autocompletar em São Paulo (conforme seção 2.3);</li>
+      <li><strong>OpenStreetMap e GitHub Pages:</strong> Ao carregar o mapa interativo, transfere requisições de rede para entrega das imagens cartográficas e da interface visual.</li>
+    </ul>
     <h4 id="-reten-o-de-dados">⏱️ Retenção de Dados</h4>
     <p><strong>Duração:</strong> Os dados são mantidos no seu dispositivo enquanto o aplicativo estiver instalado.</p>
     <p><strong>Exclusão:</strong> Todos os dados são automaticamente deletados quando você:</p>
@@ -325,19 +335,39 @@
         <tr>
           <th>Permissão</th>
           <th>Plataforma</th>
-          <th>Uso</th>
+          <th>Finalidade</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td><strong>ACCESS_FINE_LOCATION</strong> / <strong>ACCESS_COARSE_LOCATION</strong></td>
+          <td>Android</td>
+          <td>Obter a localização aproximada ou precisa em primeiro plano durante o uso da tela do mapa, para indicar no mapa se o usuário está dentro ou fora da área de rodízio. (Opcional)</td>
+        </tr>
+        <tr>
+          <td><strong>Localização (Durante o Uso)</strong></td>
+          <td>iOS</td>
+          <td>Obter a localização em primeiro plano durante o uso da tela do mapa, para indicar se o usuário está dentro ou fora da área de rodízio. (Opcional)</td>
+        </tr>
+        <tr>
+          <td><strong>READ_CALENDAR</strong> / <strong>WRITE_CALENDAR</strong></td>
+          <td>Android</td>
+          <td>Permitir a criação e sincronização de eventos recorrentes de rodízio diretamente no calendário do seu dispositivo. (Opcional)</td>
+        </tr>
+        <tr>
+          <td><strong>Calendário</strong></td>
+          <td>iOS</td>
+          <td>Permitir a criação e sincronização de eventos recorrentes de rodízio diretamente no calendário do seu dispositivo. (Opcional)</td>
+        </tr>
+        <tr>
           <td><strong>POST_NOTIFICATIONS</strong></td>
           <td>Android 13+</td>
-          <td>Exibir notificações locais de rodízio no seu dispositivo</td>
+          <td>Exibir notificações locais agendadas de rodízio no seu dispositivo. (Opcional)</td>
         </tr>
         <tr>
           <td><strong>Notificações</strong></td>
           <td>iOS</td>
-          <td>Exibir notificações locais de rodízio no seu dispositivo</td>
+          <td>Exibir notificações locais agendadas de rodízio no seu dispositivo. (Opcional)</td>
         </tr>
       </tbody>
     </table>
@@ -363,8 +393,7 @@
       <li><strong>Não há transmissão de dados:</strong> Elimina riscos de interceptação em trânsito</li>
     </ul>
     <h3 id="5-2-seguran-a-de-dados-em-tr-nsito">5.2 Segurança de Dados em Trânsito</h3>
-    <p>Como o aplicativo não faz nenhuma chamada de rede, não há dados transmitidos pela internet. Portanto, não há
-      riscos de interceptação de dados em trânsito.</p>
+    <p>Todas as comunicações com serviços externos realizadas pelo aplicativo — como a renderização do mapa interativo (OpenStreetMap / GitHub Pages), as consultas de busca de endereços (LocationIQ) e as conexões do SDK do Google AdMob — são efetuadas exclusivamente por meio de conexões seguras e criptografadas utilizando o protocolo <strong>HTTPS (TLS)</strong>. Isso impede que dados de tráfego de rede ou termos de busca sejam interceptados ou manipulados por terceiros não autorizados.</p>
     <h3 id="5-3-seguran-a-do-c-digo">5.3 Segurança do Código</h3>
     <p>O código do Rodízio SP foi desenvolvido seguindo rigorosas práticas de segurança de dados. As funcionalidades
       foram projetadas com foco em proteção de privacidade desde o início.</p>
@@ -443,9 +472,15 @@
     </ul>
     <p>Neste caso, qualquer compartilhamento será feito conforme exigido pela lei e nossos esforços serão feitos para
       notificá-lo quando legalmente permitido.</p>
-    <h3 id="7-4-dependencias-de-codigo">7.4 Dependências de Código</h3>
-    <p>O aplicativo utiliza bibliotecas externas de terceiros. Exceto pelo SDK do Google AdMob, descrito nesta política,
-      essas dependências não acessam ou transmitem os dados locais cadastrados no app.</p>
+    <h3 id="7-4-dependencias-de-codigo">7.4 Serviços e Dependências de Terceiros</h3>
+    <p>O aplicativo utiliza bibliotecas e serviços de terceiros estritamente necessários para o funcionamento de seus recursos:</p>
+    <ul>
+      <li><strong>Google AdMob:</strong> Exibição de publicidade no aplicativo (conforme Seção 2.5);</li>
+      <li><strong>LocationIQ:</strong> Processamento em tempo real de termos de busca na tela do mapa para fornecer sugestões de autocompletar de endereços (conforme Seção 2.3);</li>
+      <li><strong>OpenStreetMap / Leaflet:</strong> Fornecimento de mapas-base e renderização interativa da visualização cartográfica;</li>
+      <li><strong>Bibliotecas de Sistema (@react-native-async-storage, expo-location, expo-calendar):</strong> Acesso controlado a recursos locais do aparelho (armazenamento local, GPS e calendário), em estrita conformidade com as permissões concedidas pelo usuário.</li>
+    </ul>
+    <p>Nenhuma biblioteca ou serviço externo tem acesso aos dados locais de cadastro de veículos armazenados no seu dispositivo.</p>
     <h2 id="menores">8. Proteção de Menores de Idade</h2>
     <h3 id="8-1-consentimento-dos-respons-veis">8.1 Consentimento dos Responsáveis</h3>
     <p>O Rodízio SP App não é intencionalmente direcionado a menores de idade (menores de 18 anos). Se você é menor de
@@ -487,6 +522,11 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>2 de outubro de 2026</td>
+          <td>1.3.0</td>
+          <td>Adequação às novas especificações do mapa: inclusão da busca de endereços (LocationIQ), atualização da tabela de permissões (GPS e calendário) e esclarecimento sobre segurança de dados em trânsito (HTTPS)</td>
+        </tr>
         <tr>
           <td>2 de setembro de 2026</td>
           <td>1.2.0</td>
@@ -536,8 +576,8 @@
       aplicativo.</p>
     <p>© 2026 Rodízio SP App</p>
     <p>📱 <strong>Aplicativo versão:</strong> 1.0.0
-      📄 <strong>Política versão:</strong> 1.2
-      📅 <strong>Última atualização:</strong> 2 de setembro de 2026</p>
+      📄 <strong>Política versão:</strong> 1.3.0
+      📅 <strong>Última atualização:</strong> 2 de outubro de 2026</p>
     <p><strong>Nota:</strong> Esta política é disponibilizada em Português Brasileiro. Em caso de conflito entre versões
       em diferentes idiomas, a versão em Português Brasileiro prevalece.</p>
   </main>
