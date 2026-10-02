@@ -196,6 +196,15 @@
   <div id="map"></div>
 
   <div class="bottom-container">
+    <div id="status" class="status-card searching">
+      <div class="status-title pulse-animation">
+        <span>📡</span> Aguardando localização do GPS...
+      </div>
+      <div class="status-subtitle">
+        O status será calculado pela sua localização atual
+      </div>
+    </div>
+
     <div class="action-bar">
       <button id="gpsBtn" class="action-btn gps" title="Centralizar na minha localização"
         aria-label="Minha Localização">
@@ -1399,6 +1408,35 @@
 
       // Validação de entrada na restrição
       const inside = isInsideRodizioArea([lat, lng], perimeterCoords);
+      updateUserStatus(inside);
+    }
+
+    // Atualiza card de status de rodízio do usuário
+    function updateUserStatus(inside) {
+      const statusEl = document.getElementById('status');
+      if (statusEl) {
+        statusEl.classList.remove('searching');
+        if (inside) {
+          statusEl.className = 'status-card inside';
+          statusEl.innerHTML = `
+            <div class="status-title">⚠️ Você está DENTRO do Rodízio</div>
+            <div class="status-subtitle">Picos: 07h-10h e 17h-20h (Seg a Sex)</div>
+          `;
+        } else {
+          statusEl.className = 'status-card outside';
+          statusEl.innerHTML = `
+            <div class="status-title">✅ Você está FORA do Rodízio</div>
+            <div class="status-subtitle">Circulação livre de restrição nesta via</div>
+          `;
+        }
+      }
+
+      if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+          type: 'USER_STATUS',
+          isInside: inside
+        }));
+      }
     }
 
     // Marcador de busca de endereço
@@ -1479,6 +1517,7 @@
     window.isInsideRodizioArea = isInsideRodizioArea;
     window.updateLocation = updateUserPin;
     window.updateUserPin = updateUserPin;
+    window.updateUserStatus = updateUserStatus;
     window.showRodizioArea = showRodizioArea;
     window.plotUserAddress = plotUserAddress;
     window.clearUserMarker = clearUserMarker;
